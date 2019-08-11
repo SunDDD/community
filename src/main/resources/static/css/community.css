@@ -1,0 +1,12 @@
+.main {
+    margin: 30px;
+}
+
+.btn-publish{
+    float:right;
+    margin-bottom: 15px;
+}
+
+.alert-publish{
+    padding: 10px;
+}
