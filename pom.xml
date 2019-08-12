@@ -69,11 +69,14 @@
             <version>2.0.1</version>
         </dependency>
 
+<!--        Lombok-->
         <dependency>
-            <groupId>com.mchange</groupId>
-            <artifactId>c3p0</artifactId>
-            <version>0.9.5.4</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
+            <scope>provided</scope>
         </dependency>
+
 
 
     </dependencies>

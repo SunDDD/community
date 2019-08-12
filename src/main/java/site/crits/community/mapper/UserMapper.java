@@ -16,10 +16,13 @@ import site.crits.community.model.User;
 @Mapper
 public interface UserMapper {
 
-    @Insert("insert into community_user (account_id, name, token, gmt_create, gmt_modified) values (#{accountId}, #{name}, #{token}, #{gmtCreate}, #{gmtModified})")
+    @Insert("insert into community_user (account_id, name, token, gmt_create, gmt_modified, bio, avatar_url) values (#{accountId}, #{name}, #{token}, #{gmtCreate}, #{gmtModified}, #{bio}, #{avatarUrl})")
     void insert(User user);
 
     @Select("select * from community_user where token = #{token}")
     User findByToken(String token);
+
+    @Select("select * from community_user where account_id = #{id}")
+    User findByAccountId(String id);
 
 }

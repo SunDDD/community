@@ -1,15 +1,16 @@
-package site.crits.community.model;
+package site.crits.community.dto;
 
 import lombok.Data;
+import site.crits.community.model.User;
 
 /**
  * @author Carlos
- * @description 问题
- * @Date 2019/8/11
+ * @description 问题信息加头像信息
+ * @Date 2019/8/12
  */
 
 @Data
-public class Question {
+public class QuestionDTO {
 
     private Integer id;
     private String title;
@@ -21,4 +22,6 @@ public class Question {
     private Integer viewCount;
     private Integer likeCount;
     private String tag;
+    private User user;
+
 }
