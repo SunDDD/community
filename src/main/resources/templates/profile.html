@@ -1,13 +1,13 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Crits</title>
+    <title>个人中心 - Crits</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/community.css">
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap.min.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/community.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -20,8 +20,8 @@
                 <div class="row" style="background-color: white">
                     <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12"  >
 
-                        <h4><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span> 发现</h4>
-                        <hr>
+                        <h2><span th:text="${sectionName}"></span></h2>
+
                         <div class="media" th:each="question : ${pagination.questions}">
                             <div class="media-left">
                                 <a href="">
@@ -38,25 +38,25 @@
                         <nav aria-label="Page navigation">
                             <ul class="pagination">
                                 <li th:if="${pagination.showFirstPage}">
-                                    <a href="#" aria-label="Previous" th:href="@{/(page=${1})}">
+                                    <a href="#" aria-label="Previous" th:href="@{/profile/questions(page=${1})}">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
                                 <li th:if="${pagination.showPrevious}" >
-                                    <a href="#" aria-label="Previous" th:href="@{/(page=${currentPage - 1})}">
+                                    <a href="#" aria-label="Previous" th:href="@{/profile/questions(page=${currentPage - 1})}">
                                         <span aria-hidden="true">&lt;</span>
                                     </a>
                                 </li>
                                 <li th:each="page : ${pagination.pages}" th:class="${currentPage == page} ? 'active' : ''" >
-                                    <a href="#" th:text="${page}" th:href="@{/(page=${page})}" ></a>
+                                    <a href="#" th:text="${page}" th:href="@{/profile/questions(page=${page})}" ></a>
                                 </li>
                                 <li th:if="${pagination.showNext}">
-                                    <a href="#" aria-label="Previous" th:href="@{/(page=${currentPage + 1})}">
+                                    <a href="#" aria-label="Previous" th:href="@{/profile/questions(page=${currentPage + 1})}">
                                         <span aria-hidden="true">&gt;</span>
                                     </a>
                                 </li>
                                 <li th:if="${pagination.showLastPage}">
-                                    <a href="#" aria-label="Previous" th:href="@{/(page=${totalPage})}">
+                                    <a href="#" aria-label="Previous" th:href="@{/profile/questions(page=${totalPage})}">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
@@ -65,7 +65,16 @@
 
                     </div>
                     <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" >
-                        <h4>热门话题</h4>
+                        <div class="list-group">
+                            <a href="#" class="list-group-item active" th:classappend="${section == 'questions'} ? 'active' : ''">我的问题</a>
+                            <a href="#" class="list-group-item" th:classappend="${section == 'recent'} ? 'active' : ''">最新回复
+                                <span class="badge">14</span>
+                            </a>
+                            <a href="#" class="list-group-item">Morbi leo risus</a>
+                            <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                            <a href="#" class="list-group-item">Vestibulum at eros</a>
+                        </div>
+
                     </div>
                 </div>
             </div>

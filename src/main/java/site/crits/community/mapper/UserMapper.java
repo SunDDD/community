@@ -22,7 +22,7 @@ public interface UserMapper {
     @Select("select * from community_user where token = #{token}")
     User findByToken(String token);
 
-    @Select("select * from community_user where account_id = #{id}")
-    User findByAccountId(String id);
+    @Select("select * from community_user where id = #{id}")
+    User findByAccountId(Integer id);
 
 }

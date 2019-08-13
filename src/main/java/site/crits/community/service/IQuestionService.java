@@ -12,11 +12,4 @@ public interface IQuestionService {
      */
     PaginationDTO list(Integer page, Integer size);
 
-    /**
-     * 获取总页数
-     * @return
-     * @param size
-     */
-    Integer getTotalPage(Integer size);
-
 }

@@ -18,12 +18,18 @@ import java.util.List;
 @Mapper
 public interface QuestionMapper {
 
-    @Insert("insert into community_question (title, description, gmt_create, gmt_modified, creator, tag) values (#{title}, #{description}, #{gmtCreate}, #{gmtModified}, #{creator}, #{tag})")
+    @Insert("insert into community_question (title, description, gmt_create, gmt_modified, creator, account_id, tag) values (#{title}, #{description}, #{gmtCreate}, #{gmtModified}, #{creator}, #{accountId}, #{tag})")
     void create(Question question);
 
     @Select("select * from community_question order by id desc limit  #{offset}, #{size}")
     List<Question> list(Integer offset, Integer size);
 
+    @Select("select * from community_question where account_id = #{id} order by id desc limit  #{offset}, #{size}")
+    List<Question> listU(Integer offset, Integer size, String id);
+
     @Select("select count(1) from community_question")
     Integer questionCount();
+
+    @Select("select count(1) from community_question where account_id = #{accountId}")
+    Integer questionCountByUser(String accountId);
 }
