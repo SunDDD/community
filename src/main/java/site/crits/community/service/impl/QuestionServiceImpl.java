@@ -48,6 +48,7 @@ public class QuestionServiceImpl implements IQuestionService {
 
     }
 
+    @Override
     public QuestionDTO questionDetail(Integer id) {
 
         Question question = questionMapper.getById(id);
@@ -67,4 +68,14 @@ public class QuestionServiceImpl implements IQuestionService {
 
     }
 
+    @Override
+    public void createOrUpdate(Question question) {
+        Question dbQuestion = questionMapper.getById(question.getId());
+        if (dbQuestion == null) {
+            questionMapper.create(question);
+        } else {
+            question.setGmtModified(System.currentTimeMillis());
+            questionMapper.updateByQuestion(question);
+        }
+    }
 }

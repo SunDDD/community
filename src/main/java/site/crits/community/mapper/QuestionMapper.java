@@ -3,6 +3,7 @@ package site.crits.community.mapper;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 import site.crits.community.model.Question;
 
@@ -35,4 +36,7 @@ public interface QuestionMapper {
 
     @Select("select * from community_question where id = #{id}")
     Question getById(Integer id);
+
+    @Update("update community_question set title = #{title}, description = #{description}, gmt_modified = #{gmtModified}, tag = #{tag} where id = #{id}")
+    void updateByQuestion(Question question);
 }
