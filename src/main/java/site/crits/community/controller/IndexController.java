@@ -12,7 +12,6 @@ import site.crits.community.provider.QuestionProvider;
 import site.crits.community.provider.UserProvider;
 import site.crits.community.service.impl.QuestionServiceImpl;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -42,9 +41,8 @@ public class IndexController {
                         @RequestParam(name = "page", defaultValue = "1") Integer page,
                         @RequestParam(name = "size", defaultValue = "10") Integer size) {
 
-        Cookie[] cookies = request.getCookies();
+        User user = (User) request.getSession().getAttribute("user");
 
-        User user = userProvider.findUserByCookies(cookies);
         if (user != null) {
             request.getSession().setAttribute("user" , user);
         }

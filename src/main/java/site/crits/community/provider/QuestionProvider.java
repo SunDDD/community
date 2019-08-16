@@ -33,7 +33,7 @@ public class QuestionProvider {
         for (Question question : questionList) {
             Integer creator = question.getCreator();
 //            System.out.println(creator);
-            User user = userMapper.findByAccountId(creator);
+            User user = userMapper.findById(creator);
             QuestionDTO questionDTO = new QuestionDTO();
             BeanUtils.copyProperties(question, questionDTO);
             questionDTO.setUser(user);

@@ -3,6 +3,7 @@ package site.crits.community.mapper;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 import site.crits.community.model.User;
 
@@ -23,6 +24,11 @@ public interface UserMapper {
     User findByToken(String token);
 
     @Select("select * from community_user where id = #{id}")
-    User findByAccountId(Integer id);
+    User findById(Integer id);
 
+    @Select("select * from community_user where account_id = #{accountId}")
+    User findByAccountId(String accountId);
+
+    @Update("update community_user set name=#{name}, token=#{token}, gmt_modified=#{gmtModified}, bio=#{bio}, avatar_url=#{avatarUrl} where account_id=#{accountId}")
+    void updateByUser(User user);
 }

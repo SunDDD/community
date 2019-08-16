@@ -1,11 +1,14 @@
 package site.crits.community.service.impl;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import site.crits.community.dto.PaginationDTO;
+import site.crits.community.dto.QuestionDTO;
 import site.crits.community.mapper.QuestionMapper;
 import site.crits.community.mapper.UserMapper;
 import site.crits.community.model.Question;
+import site.crits.community.model.User;
 import site.crits.community.provider.QuestionProvider;
 import site.crits.community.service.IQuestionService;
 
@@ -42,6 +45,25 @@ public class QuestionServiceImpl implements IQuestionService {
 //        System.out.println(questionList);
         PaginationDTO dto = questionProvider.list(paginationDTO, questionList, page, size, totalCount);
         return dto;
+
+    }
+
+    public QuestionDTO questionDetail(Integer id) {
+
+        Question question = questionMapper.getById(id);
+        if (question == null) {
+            return null;
+        }
+
+        QuestionDTO questionDTO = new QuestionDTO();
+
+        BeanUtils.copyProperties(question, questionDTO);
+
+        User user = userMapper.findById(question.getCreator());
+
+        questionDTO.setUser(user);
+
+        return questionDTO;
 
     }
 

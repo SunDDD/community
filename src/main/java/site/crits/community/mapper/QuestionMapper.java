@@ -32,4 +32,7 @@ public interface QuestionMapper {
 
     @Select("select count(1) from community_question where account_id = #{accountId}")
     Integer questionCountByUser(String accountId);
+
+    @Select("select * from community_question where id = #{id}")
+    Question getById(Integer id);
 }

@@ -12,7 +12,6 @@ import site.crits.community.provider.QuestionProvider;
 import site.crits.community.provider.UserProvider;
 import site.crits.community.service.impl.ProfileServiceImpl;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -41,22 +40,27 @@ public class ProfileController {
                           @RequestParam(name = "page", defaultValue = "1") Integer page,
                           @RequestParam(name = "size", defaultValue = "10") Integer size) {
 
-        if ("question".equals(action)) {
+        if ("questions".equals(action)) {
             model.addAttribute("section", "questions");
             model.addAttribute("sectionName", "我的提问");
-        }
 
-        Cookie[] cookies = request.getCookies();
-        User user = userProvider.findUserByCookies(cookies);
-        PaginationDTO pagination = profileService.list(page, size, user);
+            User user = (User) request.getSession().getAttribute("user");
+
+            PaginationDTO pagination = profileService.list(page, size, user);
 //        System.out.println(pagination);
-        Integer totalPage = questionProvider.getTotalPage(size, user);
+            Integer totalPage = questionProvider.getTotalPage(size, user);
 //        System.out.println("totalPage " + totalPage);
-        List<Integer> pages = pagination.getPages();
+            List<Integer> pages = pagination.getPages();
 //        System.out.println(pages);
-        model.addAttribute("pagination", pagination);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("totalPage", totalPage);
+            model.addAttribute("pagination", pagination);
+            model.addAttribute("currentPage", page);
+            model.addAttribute("totalPage", totalPage);
+
+
+        } else if ("recent".equals(action)) {
+            model.addAttribute("section", "recent");
+            model.addAttribute("sectionName", "最新回复");
+        }
 
         return "profile";
     }
