@@ -41,7 +41,7 @@ public class AuthorizeController {
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code,
                            @RequestParam(name = "state") String state,
-                           HttpServletRequest request,
+//                           HttpServletRequest request,
                            HttpServletResponse response) {
 
         //System.out.println("code = " + code + ", state = " + state);

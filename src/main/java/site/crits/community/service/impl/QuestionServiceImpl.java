@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import site.crits.community.dto.PaginationDTO;
 import site.crits.community.dto.QuestionDTO;
+import site.crits.community.exception.CustomizeErrorCode;
+import site.crits.community.exception.CustomizeException;
 import site.crits.community.mapper.QuestionMapper;
 import site.crits.community.mapper.UserMapper;
 import site.crits.community.model.Question;
@@ -53,7 +55,7 @@ public class QuestionServiceImpl implements IQuestionService {
 
         Question question = questionMapper.getById(id);
         if (question == null) {
-            return null;
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         }
 
         QuestionDTO questionDTO = new QuestionDTO();
