@@ -26,4 +26,10 @@ public interface IQuestionService {
      * @param question
      */
     void createOrUpdate(Question question);
+
+    /**
+     * 评论数加一
+     * @param id 问题id
+     */
+    void incView(Integer id);
 }

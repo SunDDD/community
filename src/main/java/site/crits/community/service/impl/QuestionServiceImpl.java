@@ -80,4 +80,11 @@ public class QuestionServiceImpl implements IQuestionService {
             questionMapper.updateByQuestion(question);
         }
     }
+
+    @Override
+    public void incView(Integer id) {
+        Question question = questionMapper.getById(id);
+        Integer viewCount = question.getViewCount();
+        questionMapper.setViewCount(id, viewCount + 1);
+    }
 }
