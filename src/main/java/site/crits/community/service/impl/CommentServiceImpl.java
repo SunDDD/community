@@ -2,6 +2,7 @@ package site.crits.community.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import site.crits.community.enums.CommentTypeEnum;
 import site.crits.community.exception.CustomizeErrorCode;
 import site.crits.community.exception.CustomizeException;
@@ -30,6 +31,7 @@ public class CommentServiceImpl implements ICommentService {
     private QuestionServiceImpl questionService;
 
     @Override
+    @Transactional
     public void insert(Comment comment) {
         if (comment.getParentId() == null || comment.getParentId() == 0) {
             throw new CustomizeException(CustomizeErrorCode.TARGET_PARAM_NOT_FOUND);
