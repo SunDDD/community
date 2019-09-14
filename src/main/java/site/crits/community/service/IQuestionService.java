@@ -28,8 +28,14 @@ public interface IQuestionService {
     void createOrUpdate(Question question);
 
     /**
-     * 评论数加一
+     * 访问数加一
      * @param id 问题id
      */
     void incView(Integer id);
+
+    /**
+     * 评论数加一
+     * @param id
+     */
+    void incCommentCount(Integer id);
 }

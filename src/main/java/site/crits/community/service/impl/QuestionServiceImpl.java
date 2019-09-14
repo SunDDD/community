@@ -87,4 +87,11 @@ public class QuestionServiceImpl implements IQuestionService {
         Integer viewCount = question.getViewCount();
         questionMapper.setViewCount(id, viewCount + 1);
     }
+
+    @Override
+    public void incCommentCount(Integer id) {
+        Question question = questionMapper.getById(id);
+        Integer commentCount = question.getCommentCount();
+        questionMapper.setCommentCount(id, commentCount + 1);
+    }
 }
