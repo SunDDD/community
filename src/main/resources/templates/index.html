@@ -2,13 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Crits</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/community.css">
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.min.js" type="application/javascript"></script>
 </head>
+<script type="application/javascript">
+    window.onload = function () {
+        var closable = window.localStorage.getItem("closable");
+        if (closable == "true") {
+            window.close();
+            window.localStorage.removeItem("closable");
+        }
+    }
+</script>
 <body>
 <nav class="navbar navbar-default">
 
@@ -16,9 +25,9 @@
 
     <div class="container-fluid" style="background-color: #efefef">
         <div class="row main">
-            <div class="container-fluid col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1"  >
+            <div class="container-fluid col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
                 <div class="row" style="background-color: white">
-                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12"  >
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
 
                         <h4><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span> 发现</h4>
                         <hr>
@@ -29,11 +38,14 @@
                                 </a>
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading" >
+                                <h4 class="media-heading">
                                     <a th:text="${question.getTitle()}" th:href="@{'/question/'+${question.id}}"></a>
                                 </h4>
                                 <span th:text="${question.getDescription()}"></span> <br>
-                                <span class="text-desc">• <span th:text="${question.getCommentCount()}"></span> 个评论 • <span th:text="${question.getViewCount()}"></span> 次浏览 • <span th:text="${#dates.format(question.getGmtCreate(), 'yyyy-MM-dd HH:mm')}"></span></span>
+                                <span class="text-desc">• <span
+                                        th:text="${question.getCommentCount()}"></span> 个评论 • <span
+                                        th:text="${question.getViewCount()}"></span> 次浏览 • <span
+                                        th:text="${#dates.format(question.getGmtCreate(), 'yyyy-MM-dd HH:mm')}"></span></span>
                             </div>
                         </div>
 
@@ -44,13 +56,14 @@
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
-                                <li th:if="${pagination.showPrevious}" >
+                                <li th:if="${pagination.showPrevious}">
                                     <a href="#" aria-label="Previous" th:href="@{/(page=${currentPage - 1})}">
                                         <span aria-hidden="true">&lt;</span>
                                     </a>
                                 </li>
-                                <li th:each="page : ${pagination.pages}" th:class="${currentPage == page} ? 'active' : ''" >
-                                    <a href="#" th:text="${page}" th:href="@{/(page=${page})}" ></a>
+                                <li th:each="page : ${pagination.pages}"
+                                    th:class="${currentPage == page} ? 'active' : ''">
+                                    <a href="#" th:text="${page}" th:href="@{/(page=${page})}"></a>
                                 </li>
                                 <li th:if="${pagination.showNext}">
                                     <a href="#" aria-label="Previous" th:href="@{/(page=${currentPage + 1})}">
@@ -66,7 +79,7 @@
                         </nav>
 
                     </div>
-                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" >
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                         <h4>热门话题</h4>
                     </div>
                 </div>
