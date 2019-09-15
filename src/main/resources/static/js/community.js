@@ -26,6 +26,7 @@ function post() {
         },
         dataType: "json"
     });
+    window.location.href = questionId;
     console.log(questionId);
     console.log(commentContent);
 
